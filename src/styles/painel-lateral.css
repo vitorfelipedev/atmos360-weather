@@ -1,0 +1,87 @@
+/* src/styles/painel-lateral.css */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.sidebar h2 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+/* --- GRID ADAPTÁVEL PARA 3, 5 OU 7 DIAS --- */
+.forecast-grid {
+  display: grid;
+  /* Cria colunas fluidas que se ajustam ao tamanho do container */
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: var(--spacing-sm);
+}
+
+.forecast-card {
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  text-align: center;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-main);
+  border-color: var(--accent-color);
+}
+
+.forecast-card .day {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.forecast-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 0.5rem;
+}
+
+.forecast-temp {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.forecast-temp .min-temp {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 400;
+  margin-left: 4px;
+}
+
+/* Histórico */
+.history-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.history-item {
+  padding: 0.4rem 0.8rem;
+  border-radius: 16px;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.history-item:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background-color: var(--bg-surface);
+}

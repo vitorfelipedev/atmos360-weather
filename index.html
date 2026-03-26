@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./src/styles/style.css">
+  <title>Atmos360 - Wheater</title>
+</head>
+
+<body class="dark-mode">
+  <div class="app-container">
+
+    <header class="header">
+      <form id="search-form" class="search-box">
+        <input type="text" id="city-input" placeholder="Buscar cidade..." required autocomplete="off" />
+        <button type="submit" title="Buscar"><img src="./public/icons/search.svg" alt=""></button>
+      </form>
+
+      <div class="header-actions">
+        <button id="location-btn" class="btn btn-primary" title="Usar minha localização"><img src="./public/icons/local.svg" alt=""> Localização</button>
+        <button id="theme-toggle-btn" class="btn" title="Alternar tema"><img src="./public/icons/sun.svg" alt=""></button>
+        <button id="unit-toggle-btn" class="btn" title="Mudar unidade">°C</button>
+      </div>
+    </header>
+
+    <div class="main-content">
+
+      <section class="current-weather-card">
+        <div class="city-info">
+          <h1 id="city-name">Colombo</h1>
+          <p id="current-date">Quinta-feira, 26 de Março</p>
+        </div>
+
+        <div class="weather-main">
+          <img id="weather-icon" src="./public/icons/sun.svg" alt="Ensolarado" />
+          <div class="temp-wrapper">
+            <span id="temperature">24</span>
+            <span class="unit">°C</span>
+          </div>
+          <p id="weather-desc">Ensolarado</p>
+        </div>
+
+        <div class="weather-details">
+          <div class="detail-item">
+            <span class="label">Umidade</span>
+            <span class="value" id="humidity">60%</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">Vento</span>
+            <span class="value" id="wind">15 km/h</span>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+
+        <section class="forecast-section">
+          <h2>Previsão (Próximos 3 Dias)</h2>
+          <div id="forecast-container" class="forecast-grid">
+
+            <div class="forecast-card">
+              <p class="day">Amanhã</p>
+              <img src="./public/icons/rainy-sun.svg" alt="Nublado">
+              <p class="forecast-temp">26° <span class="min-temp">18°</span></p>
+            </div>
+            <div class="forecast-card">
+              <p class="day">Sábado</p>
+              <img src="./public/icons/rainy-sun.svg" alt="Chuva">
+              <p class="forecast-temp">22° <span class="min-temp">16°</span></p>
+            </div>
+            <div class="forecast-card">
+              <p class="day">Domingo</p>
+              <img src="./public/icons/sun.svg" alt="Sol">
+              <p class="forecast-temp">28° <span class="min-temp">19°</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="history-section">
+          <h2>Buscas Recentes</h2>
+          <ul id="history-list" class="history-list">
+            <li class="history-item">Curitiba</li>
+            <li class="history-item">São Paulo</li>
+            <li class="history-item">Londres</li>
+          </ul>
+        </section>
+
+      </aside>
+
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+.current-weather-card {
+  text-align: center;
+  padding: var(--spacing-lg);
+  border-radius: 12px;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-xl);
+}
+
+.city-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.city-info p {
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.weather-main img {
+  width: 120px;
+  height: 120px;
+}
+
+.temp-wrapper {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.unit {
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  color: var(--text-secondary);
+}
+
+#weather-desc {
+  text-transform: capitalize;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.detail-item .label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.detail-item .value {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+@media (min-width: 1024px) {
+  .current-weather-card {
+    margin-bottom: 0;
+    padding: var(--spacing-xl);
+  }
+}
