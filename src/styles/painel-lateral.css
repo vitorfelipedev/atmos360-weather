@@ -1,87 +1,120 @@
-/* src/styles/painel-lateral.css */
+/* ============================================
+   Painel Lateral — Previsão + Histórico
+   ============================================ */
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-xl);
 }
 
 .sidebar h2 {
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid transparent;
+  border-image: var(--gradient-separator) 1;
+  letter-spacing: 0.01em;
 }
 
-/* --- GRID ADAPTÁVEL PARA 3, 5 OU 7 DIAS --- */
+/* ============================================
+   Grid de previsão — adapta a 3, 5 ou 7 dias
+   ============================================ */
 .forecast-grid {
   display: grid;
-  /* Cria colunas fluidas que se ajustam ao tamanho do container */
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: var(--spacing-sm);
 }
 
 .forecast-card {
-  background-color: var(--bg-body);
-  border: 1px solid var(--border-color);
-  padding: 1rem 0.5rem;
-  border-radius: 8px;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  padding: var(--spacing-md) var(--spacing-sm);
+  border-radius: var(--radius-md);
   text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+  /* Animação de entrada escalonada — JS pode controlar o delay */
+  animation: fadeInUp 0.5s ease-out both;
 }
 
+.forecast-card:nth-child(1) { animation-delay: 0.1s; }
+.forecast-card:nth-child(2) { animation-delay: 0.2s; }
+.forecast-card:nth-child(3) { animation-delay: 0.3s; }
+.forecast-card:nth-child(4) { animation-delay: 0.4s; }
+.forecast-card:nth-child(5) { animation-delay: 0.5s; }
+.forecast-card:nth-child(6) { animation-delay: 0.6s; }
+.forecast-card:nth-child(7) { animation-delay: 0.7s; }
+
 .forecast-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-main);
-  border-color: var(--accent-color);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
 }
 
 .forecast-card .day {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .forecast-card img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 0.5rem;
+  width: 44px;
+  height: 44px;
+  margin-bottom: var(--spacing-xs);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .forecast-temp {
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
 }
 
 .forecast-temp .min-temp {
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 400;
-  margin-left: 4px;
+  margin-left: 3px;
 }
 
-/* Histórico */
+/* ============================================
+   Histórico de buscas (tags)
+   ============================================ */
 .history-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  list-style: none;
+  gap: var(--spacing-sm);
 }
 
 .history-item {
-  padding: 0.4rem 0.8rem;
-  border-radius: 16px;
-  background-color: var(--bg-body);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-card);
   border: 1px solid var(--border-color);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
 }
 
 .history-item:hover {
-  border-color: var(--accent-color);
-  color: var(--accent-color);
-  background-color: var(--bg-surface);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px var(--accent-glow);
 }

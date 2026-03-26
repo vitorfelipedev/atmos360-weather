@@ -1,76 +1,148 @@
+/* ============================================
+   Card — Clima Atual
+   ============================================ */
+
 .current-weather-card {
   text-align: center;
-  padding: var(--spacing-lg);
-  border-radius: 12px;
-  background-color: var(--bg-body);
-  border: 1px solid var(--border-color);
-  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-card);
+  transition: all var(--transition-base);
 }
 
+/* --- Informações da cidade --- */
 .city-info h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.3rem;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.2rem;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .city-info p {
   color: var(--text-secondary);
-  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-xl);
 }
 
-.weather-main img {
-  width: 120px;
-  height: 120px;
+/* --- Ícone principal do clima (flutuante) --- */
+.weather-icon-main {
+  width: 110px;
+  height: 110px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.15));
 }
 
+/* --- Temperatura --- */
 .temp-wrapper {
   font-size: 4rem;
-  font-weight: bold;
-  margin: 1rem 0;
+  font-weight: 800;
+  margin: 0.5rem 0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
 .unit {
   font-size: 1.5rem;
-  margin-top: 0.5rem;
+  font-weight: 600;
+  margin-top: 0.3rem;
   color: var(--text-secondary);
 }
 
+/* --- Descrição do clima --- */
 #weather-desc {
   text-transform: capitalize;
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
 }
 
+/* --- Grid de detalhes (6 itens: 3 colunas × 2 linhas) --- */
 .weather-details {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--border-color);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid transparent;
+  border-image: var(--gradient-separator) 1;
 }
 
 .detail-item {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  align-items: center;
+  gap: 0.35rem;
+  padding: var(--spacing-sm);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.detail-item:hover {
+  background: var(--accent-soft);
+}
+
+.detail-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.detail-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
 }
 
 .detail-item .label {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
+  font-weight: 600;
   color: var(--text-secondary);
   text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .detail-item .value {
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
+/* --- Responsivo: 2 colunas em telas menores --- */
+@media (max-width: 480px) {
+  .weather-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .city-info h1 {
+    font-size: 1.7rem;
+  }
+
+  .temp-wrapper {
+    font-size: 3.2rem;
+  }
+
+  .weather-icon-main {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* --- Desktop: mais respiração no card --- */
 @media (min-width: 1024px) {
   .current-weather-card {
-    margin-bottom: 0;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-2xl);
   }
 }
