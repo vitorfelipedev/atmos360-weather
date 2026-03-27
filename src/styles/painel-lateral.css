@@ -45,7 +45,7 @@
 }
 
 .forecast-card {
-  animation-delay: calc(var(--i) * 0.1s);
+  animation-delay: calc(var(--i) * 0.05s);
 }
 
 .forecast-card:hover {
@@ -113,4 +113,8 @@
   background: var(--accent-soft);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.empty-messagem {
+  color: var(--text-secondary);
 }
