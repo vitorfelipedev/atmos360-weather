@@ -11,5 +11,5 @@ export function getCidades() {
 }
 
 export function saveCidades(cidades) {
-  localStorage.setItem('cidades', JSON.stringify(cidades));
+  localStorage.setItem(CIDADES_KEY, JSON.stringify(cidades));
 }

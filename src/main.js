@@ -47,7 +47,7 @@ async function initApp() {
     realizarBuscaCompleta(localizacao);
   });
   renderizarCidadesRecentes();
-  const ultimaCidade = getCidades()[0];
+  const ultimaCidade = getCidades()[0] || 'Colombo';
   realizarBuscaCompleta(ultimaCidade);
 }
 

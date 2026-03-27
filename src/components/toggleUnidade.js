@@ -1,6 +1,7 @@
 let isCelsius = true;
-const unitToggleBtn = document.getElementById('unit-toggle-btn');
+
 export function initToggleUnidade() {
+  const unitToggleBtn = document.getElementById('unit-toggle-btn');
   unitToggleBtn.addEventListener('click', () => {
     isCelsius = !isCelsius;
     unitToggleBtn.textContent = isCelsius ? '°C' : '°F';

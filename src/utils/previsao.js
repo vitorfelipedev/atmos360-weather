@@ -1,6 +1,5 @@
-const forecastContainer = document.getElementById('forecast-container');
-
 export function renderizarPrevisao(arrayDeDias, isCelsius = true) {
+  const forecastContainer = document.getElementById('forecast-container');
   forecastContainer.innerHTML = '';
   const fragment = document.createDocumentFragment();
   const proximosDias = arrayDeDias.slice(1);

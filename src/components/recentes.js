@@ -1,8 +1,7 @@
 import { getCidades, saveCidades } from '../services/storage.js';
 
-const recentesElemento = document.getElementById('history-list');
-
 export function renderizarCidadesRecentes(novaCidade) {
+  const recentesElemento = document.getElementById('history-list');
   let cidades = getCidades();
   if (novaCidade) {
     cidades = cidades.filter(

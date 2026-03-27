@@ -1,20 +1,3 @@
-//Elementos Gerais
-const cityNameElement = document.getElementById('city-name');
-const dateElement = document.getElementById('current-date');
-const timeElement = document.getElementById('current-time');
-const tempElement = document.getElementById('temperature');
-const iconElement = document.getElementById('weather-icon');
-const descElement = document.getElementById('weather-desc');
-//Elementos de detalhes
-const humidityElement = document.getElementById('humidity');
-const windElement = document.getElementById('wind');
-const feelsLikeElement = document.getElementById('feelslike');
-const pressureElement = document.getElementById('pressure');
-const uvElement = document.getElementById('uv-index');
-const visibilityElement = document.getElementById('visibility');
-
-const unitElement = document.querySelector('.unit');
-
 function obterDataFormatada(dataString) {
   const dataDaCidade = new Date(dataString.replace(/-/g, '/'));
   const opcoes = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -30,6 +13,20 @@ function obterTempoFormatado(timeStr) {
 }
 
 export function renderizarClimaAtual(dados, isCelsius = true) {
+  const cityNameElement = document.getElementById('city-name');
+  const dateElement = document.getElementById('current-date');
+  const timeElement = document.getElementById('current-time');
+  const tempElement = document.getElementById('temperature');
+  const iconElement = document.getElementById('weather-icon');
+  const descElement = document.getElementById('weather-desc');
+  const humidityElement = document.getElementById('humidity');
+  const windElement = document.getElementById('wind');
+  const feelsLikeElement = document.getElementById('feelslike');
+  const pressureElement = document.getElementById('pressure');
+  const uvElement = document.getElementById('uv-index');
+  const visibilityElement = document.getElementById('visibility');
+  const unitElement = document.querySelector('.unit');
+
   cityNameElement.textContent = dados.location.name;
   const dataString = dados.location.localtime;
   dateElement.textContent = obterDataFormatada(dataString);
@@ -39,7 +36,6 @@ export function renderizarClimaAtual(dados, isCelsius = true) {
   tempElement.textContent = Math.round(temperatura);
   unitElement.textContent = `°${letraUnidade}`;
 
-  const codigoDaCondicao = dados.current.condition.code;
   const icon = dados.current.condition.icon;
   const iconHD = icon.replace('64x64', '128x128');
   iconElement.src = iconHD;

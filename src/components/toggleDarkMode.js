@@ -1,4 +1,3 @@
-const temaElemento = document.getElementById('theme-toggle-btn');
 const iconeSol = `
   <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <circle cx="12" cy="12" r="5" />
@@ -19,22 +18,21 @@ const iconeLua = `
   </svg>
 `;
 
-function atualizarIcone(isDark) {
-  temaElemento.innerHTML = isDark ? iconeLua : iconeSol;
-}
-
 export function initDarkMode() {
+  const temaElemento = document.getElementById('theme-toggle-btn');
+
+  function atualizarIcone(isDark) {
+    temaElemento.innerHTML = isDark ? iconeLua : iconeSol;
+  }
+
   const isDarkMode = localStorage.getItem('mode') === 'dark-mode';
   if (isDarkMode) {
     document.body.classList.add('dark-mode');
   }
   atualizarIcone(isDarkMode);
-  temaElemento.addEventListener('click', (event) => {
+  temaElemento.addEventListener('click', () => {
     const ativouDark = document.body.classList.toggle('dark-mode');
-    if (ativouDark) {
-      localStorage.setItem('mode', 'dark-mode');
-    } else {
-      localStorage.setItem('mode', 'light');
-    }
+    atualizarIcone(ativouDark);
+    localStorage.setItem('mode', ativouDark ? 'dark-mode' : 'light');
   });
 }
