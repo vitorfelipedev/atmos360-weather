@@ -1,14 +1,22 @@
 import { initBarraPesquisa } from './components/barraPesquisa.js';
 import { renderizarCidadesRecentes } from './components/recentes.js';
+import {
+  getUnidadeAtual,
+  initToggleUnidade,
+} from './components/toggleUnidade.js';
 import { pesquisarCidade } from './services/api.js';
 import { renderizarClimaAtual } from './utils/climaAtual.js';
 import { renderizarPrevisao } from './utils/previsao.js';
 
+let dadosAtuais = null;
+
 export async function realizarBuscaCompleta(nomeDaCidade) {
   try {
     const clima = await pesquisarCidade(nomeDaCidade);
-    renderizarClimaAtual(clima);
-    renderizarPrevisao(clima.forecast.forecastday);
+    dadosAtuais = clima;
+    const isCelsius = getUnidadeAtual();
+    renderizarClimaAtual(clima, isCelsius);
+    renderizarPrevisao(clima.forecast.forecastday, isCelsius);
     renderizarCidadesRecentes(clima.location.name);
   } catch (erro) {
     console.error('Deu erro:', erro.message);
@@ -17,9 +25,17 @@ export async function realizarBuscaCompleta(nomeDaCidade) {
 
 async function initApp() {
   initBarraPesquisa();
+  initToggleUnidade();
   document.addEventListener('buscaHistorico', (event) => {
     const cidadeEscolhida = event.detail.cidadeClicada;
     realizarBuscaCompleta(cidadeEscolhida);
+  });
+  document.addEventListener('mudouUnidade', (event) => {
+    const isCelsius = event.detail.isCelsius;
+    if (dadosAtuais) {
+      renderizarClimaAtual(dadosAtuais, isCelsius);
+      renderizarPrevisao(dadosAtuais.forecast.forecastday, isCelsius);
+    }
   });
   renderizarCidadesRecentes();
   realizarBuscaCompleta('Curitiba');

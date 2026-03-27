@@ -61,6 +61,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin-top: 0.3rem;
+  margin-left: 0.5rem;
   color: var(--text-secondary);
 }
 
@@ -122,6 +123,7 @@
 .detail-item .value {
   font-weight: 700;
   font-size: 1rem;
+  color: var(--text-primary);
 }
 
 /* --- Responsivo: 2 colunas em telas menores --- */
@@ -132,12 +134,6 @@
 
   .city-info h1 {
     font-size: 1.7rem;
-  }
-
-  .temp-wrapper {
-    font-size: 3.2rem;
-    display: flex;
-    gap: 0.25rem;
   }
 
   .weather-icon-main {

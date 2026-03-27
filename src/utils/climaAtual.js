@@ -13,6 +13,8 @@ const pressureElement = document.getElementById('pressure');
 const uvElement = document.getElementById('uv-index');
 const visibilityElement = document.getElementById('visibility');
 
+const unitElement = document.querySelector('.unit');
+
 function obterDataFormatada(dataString) {
   const dataDaCidade = new Date(dataString.replace(/-/g, '/'));
   const opcoes = { weekday: 'long', day: 'numeric', month: 'long' };
@@ -27,12 +29,16 @@ function obterTempoFormatado(timeStr) {
   return `${horas}:${minutos}`;
 }
 
-export function renderizarClimaAtual(dados) {
+export function renderizarClimaAtual(dados, isCelsius = true) {
   cityNameElement.textContent = dados.location.name;
   const dataString = dados.location.localtime;
   dateElement.textContent = obterDataFormatada(dataString);
   timeElement.textContent = obterTempoFormatado(dataString);
-  tempElement.textContent = Math.round(dados.current.temp_c);
+  const letraUnidade = isCelsius ? 'C' : 'F';
+  const temperatura = isCelsius ? dados.current.temp_c : dados.current.temp_f;
+  tempElement.textContent = Math.round(temperatura);
+  unitElement.textContent = `°${letraUnidade}`;
+
   const codigoDaCondicao = dados.current.condition.code;
   const icon = dados.current.condition.icon;
   const iconHD = icon.replace('64x64', '128x128');
@@ -41,7 +47,10 @@ export function renderizarClimaAtual(dados) {
   descElement.textContent = dados.current.condition.text;
   humidityElement.textContent = `${dados.current.humidity}%`;
   windElement.textContent = `${dados.current.wind_kph} km/h`;
-  feelsLikeElement.textContent = `${Math.round(dados.current.feelslike_c)}°C`;
+  const sensacao = isCelsius
+    ? dados.current.feelslike_c
+    : dados.current.feelslike_f;
+  feelsLikeElement.textContent = `${Math.round(sensacao)}°${letraUnidade}`;
   pressureElement.textContent = `${dados.current.pressure_mb} mb`;
   uvElement.textContent = dados.current.uv;
   visibilityElement.textContent = `${dados.current.vis_km} km`;
