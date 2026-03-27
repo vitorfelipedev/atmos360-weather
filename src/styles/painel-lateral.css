@@ -23,7 +23,7 @@
    ============================================ */
 .forecast-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: var(--spacing-sm);
 }
 
@@ -40,17 +40,9 @@
     transform var(--transition-fast),
     box-shadow var(--transition-fast),
     border-color var(--transition-fast);
-  /* Animação de entrada escalonada — JS pode controlar o delay */
   animation: fadeInUp 0.5s ease-out both;
+  animation-delay: calc(var(--i) * 0.05s);
 }
-
-.forecast-card:nth-child(1) { animation-delay: 0.1s; }
-.forecast-card:nth-child(2) { animation-delay: 0.2s; }
-.forecast-card:nth-child(3) { animation-delay: 0.3s; }
-.forecast-card:nth-child(4) { animation-delay: 0.4s; }
-.forecast-card:nth-child(5) { animation-delay: 0.5s; }
-.forecast-card:nth-child(6) { animation-delay: 0.6s; }
-.forecast-card:nth-child(7) { animation-delay: 0.7s; }
 
 .forecast-card:hover {
   transform: translateY(-4px);
@@ -117,4 +109,8 @@
   background: var(--accent-soft);
   transform: translateY(-1px);
   box-shadow: 0 2px 8px var(--accent-glow);
+}
+
+.empty-messagem {
+  color: var(--text-secondary);
 }
