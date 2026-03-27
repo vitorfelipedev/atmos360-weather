@@ -41,6 +41,10 @@
   filter: drop-shadow(0 4px 12px rgba(59, 130, 246, 0.15));
 }
 
+#current-date {
+  margin-bottom: var(--spacing-sm);
+}
+
 /* --- Temperatura --- */
 .temp-wrapper {
   font-size: 4rem;
@@ -132,6 +136,8 @@
 
   .temp-wrapper {
     font-size: 3.2rem;
+    display: flex;
+    gap: 0.25rem;
   }
 
   .weather-icon-main {

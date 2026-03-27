@@ -18,7 +18,7 @@
 
     <header class="header">
       <form id="search-form" class="search-box">
-        <input type="text" id="city-input" placeholder="Buscar cidade..." required autocomplete="off" />
+        <input type="text" id="city-input" name="city" placeholder="Buscar cidade..." required autocomplete="off" />
         <button type="submit" aria-label="Buscar cidade">
           <!-- Ícone Search inline — adapta cor via currentColor -->
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -63,6 +63,7 @@
         <div class="city-info">
           <h1 id="city-name">Colombo</h1>
           <p id="current-date">Quinta-feira, 26 de Março</p>
+          <p id="current-time">23:50</p>
         </div>
 
         <div class="weather-main">
