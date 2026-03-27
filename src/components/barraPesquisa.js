@@ -11,6 +11,7 @@ export function initBarraPesquisa() {
     try {
       const clima = await pesquisarCidade(cidade);
       renderizarClimaAtual(clima);
+      form.reset();
     } catch (erro) {
       console.log('Deu erro:', erro.message);
     }

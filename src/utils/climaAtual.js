@@ -3,6 +3,7 @@ const cityNameElement = document.getElementById('city-name');
 const dateElement = document.getElementById('current-date');
 const timeElement = document.getElementById('current-time');
 const tempElement = document.getElementById('temperature');
+const iconElement = document.getElementById('weather-icon');
 const descElement = document.getElementById('weather-desc');
 //Elementos de detalhes
 const humidityElement = document.getElementById('humidity');
@@ -32,6 +33,11 @@ export function renderizarClimaAtual(dados) {
   dateElement.textContent = obterDataFormatada(dataString);
   timeElement.textContent = obterTempoFormatado(dataString);
   tempElement.textContent = Math.round(dados.current.temp_c);
+  const codigoDaCondicao = dados.current.condition.code;
+  const icon = dados.current.condition.icon;
+  const iconHD = icon.replace('64x64', '128x128');
+  iconElement.src = iconHD;
+  iconElement.alt = dados.current.condition.text;
   descElement.textContent = dados.current.condition.text;
   humidityElement.textContent = `${dados.current.humidity}%`;
   windElement.textContent = `${dados.current.wind_kph} km/h`;
