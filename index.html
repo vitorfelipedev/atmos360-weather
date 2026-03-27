@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Atmos360 — App de previsão do tempo com dados em tempo real. Veja temperatura, umidade, vento e previsão de até 14 dias para qualquer cidade." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./src/styles/style.css" />
+  <link rel="shortcut icon" href="./public/icons/favicon.ico" type="image/x-icon">
+  <title>Atmos360 — Weather</title>
+</head>
+
+<body class="">
+  <div class="app-container">
+
+    <header class="header">
+      <form id="search-form" class="search-box">
+        <input type="text" id="city-input" placeholder="Buscar cidade..." required autocomplete="off" />
+        <button type="submit" aria-label="Buscar cidade">
+          <!-- Ícone Search inline — adapta cor via currentColor -->
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+        </button>
+      </form>
+
+      <div class="header-actions">
+        <button id="location-btn" class="btn btn-primary" aria-label="Usar minha localização">
+          <!-- Ícone Location inline -->
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+            <circle cx="12" cy="10" r="3" />
+          </svg>
+          <span>Localização</span>
+        </button>
+
+        <button id="theme-toggle-btn" class="btn" aria-label="Alternar tema claro/escuro">
+          <!-- Ícone Sol/Lua inline -->
+          <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+
+        <button id="unit-toggle-btn" class="btn" aria-label="Mudar unidade de temperatura">°C</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+
+      <section class="current-weather-card" id="current-weather">
+        <div class="city-info">
+          <h1 id="city-name">Colombo</h1>
+          <p id="current-date">Quinta-feira, 26 de Março</p>
+        </div>
+
+        <div class="weather-main">
+          <img id="weather-icon" class="weather-icon-main" src="./public/icons/sun.svg" alt="Ensolarado" />
+          <div class="temp-wrapper">
+            <span id="temperature">24</span>
+            <span class="unit">°C</span>
+          </div>
+          <p id="weather-desc">Ensolarado</p>
+        </div>
+
+        <div class="weather-details" id="weather-details">
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">Umidade</span>
+              <span class="value" id="humidity">60%</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">Vento</span>
+              <span class="value" id="wind">15 km/h</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">Sensação</span>
+              <span class="value" id="feelslike">22°C</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">Pressão</span>
+              <span class="value" id="pressure">1015 mb</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5" />
+              <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">UV</span>
+              <span class="value" id="uv-index">5</span>
+            </div>
+          </div>
+          <div class="detail-item">
+            <svg class="detail-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+            <div class="detail-text">
+              <span class="label">Visibilidade</span>
+              <span class="value" id="visibility">10 km</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+
+        <section class="forecast-section">
+          <h2>Previsão</h2>
+          <div id="forecast-container" class="forecast-grid">
+            <div class="forecast-card">
+              <p class="day">Amanhã</p>
+              <img src="./public/icons/rainy-sun.svg" alt="Nublado" />
+              <p class="forecast-temp">26° <span class="min-temp">18°</span></p>
+            </div>
+            <div class="forecast-card">
+              <p class="day">Sábado</p>
+              <img src="./public/icons/rainy-sun.svg" alt="Chuva" />
+              <p class="forecast-temp">22° <span class="min-temp">16°</span></p>
+            </div>
+            <div class="forecast-card">
+              <p class="day">Domingo</p>
+              <img src="./public/icons/sun.svg" alt="Sol" />
+              <p class="forecast-temp">28° <span class="min-temp">19°</span></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="history-section">
+          <h2>Buscas Recentes</h2>
+          <ul id="history-list" class="history-list">
+            <li class="history-item">Curitiba</li>
+            <li class="history-item">São Paulo</li>
+            <li class="history-item">Londres</li>
+          </ul>
+        </section>
+
+      </aside>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Powered by <a href="https://www.weatherapi.com/" target="_blank" rel="noopener noreferrer" title="Free Weather API">WeatherAPI.com</a></p>
+    </footer>
+
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
