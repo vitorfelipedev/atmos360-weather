@@ -1,5 +1,6 @@
 import { pesquisarCidade } from '../services/api.js';
 import { renderizarClimaAtual } from '../utils/climaAtual.js';
+import { renderizarPrevisao } from '../utils/previsao.js';
 
 export function initBarraPesquisa() {
   const form = document.getElementById('search-form');
@@ -11,6 +12,7 @@ export function initBarraPesquisa() {
     try {
       const clima = await pesquisarCidade(cidade);
       renderizarClimaAtual(clima);
+      renderizarPrevisao(clima.forecast.forecastday);
       form.reset();
     } catch (erro) {
       console.log('Deu erro:', erro.message);
