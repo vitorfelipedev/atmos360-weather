@@ -1,10 +1,12 @@
 import { initBarraPesquisa } from './components/barraPesquisa.js';
 import { renderizarCidadesRecentes } from './components/recentes.js';
+import { initDarkMode } from './components/toggleDarkMode.js';
 import {
   getUnidadeAtual,
   initToggleUnidade,
 } from './components/toggleUnidade.js';
 import { pesquisarCidade } from './services/api.js';
+import { getCidades } from './services/storage.js';
 import { renderizarClimaAtual } from './utils/climaAtual.js';
 import { renderizarPrevisao } from './utils/previsao.js';
 
@@ -24,6 +26,7 @@ export async function realizarBuscaCompleta(nomeDaCidade) {
 }
 
 async function initApp() {
+  initDarkMode();
   initBarraPesquisa();
   initToggleUnidade();
   document.addEventListener('buscaHistorico', (event) => {
@@ -38,7 +41,8 @@ async function initApp() {
     }
   });
   renderizarCidadesRecentes();
-  realizarBuscaCompleta('Curitiba');
+  const ultimaCidade = getCidades()[0];
+  realizarBuscaCompleta(ultimaCidade);
 }
 
 initApp();

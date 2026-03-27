@@ -17,7 +17,13 @@ html {
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   background: var(--gradient-body);
   background-attachment: fixed;
   color: var(--text-primary);
@@ -60,7 +66,6 @@ ul {
   gap: var(--spacing-lg);
 }
 
-
 /* --- Animação de entrada --- */
 @keyframes fadeInUp {
   from {
@@ -74,7 +79,8 @@ ul {
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -83,7 +89,8 @@ ul {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
