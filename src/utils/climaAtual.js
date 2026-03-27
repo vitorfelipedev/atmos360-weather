@@ -38,7 +38,7 @@ export function renderizarClimaAtual(dados, isCelsius = true) {
 
   const icon = dados.current.condition.icon;
   const iconHD = icon.replace('64x64', '128x128');
-  iconElement.src = iconHD;
+  iconElement.src = `https:${iconHD}`;
   iconElement.alt = dados.current.condition.text;
   descElement.textContent = dados.current.condition.text;
   humidityElement.textContent = `${dados.current.humidity}%`;

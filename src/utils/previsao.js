@@ -38,7 +38,7 @@ export function renderizarPrevisao(arrayDeDias, isCelsius = true) {
     day.textContent = nomeDia;
 
     const img = document.createElement('img');
-    img.src = iconHD;
+    img.src = `https:${iconHD}`;
     img.alt = descricao;
     img.title = descricao;
 
