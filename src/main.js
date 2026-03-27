@@ -1,4 +1,5 @@
 import { initBarraPesquisa } from './components/barraPesquisa.js';
+import { initLocalizacao } from './components/localizacao.js';
 import { renderizarCidadesRecentes } from './components/recentes.js';
 import { initDarkMode } from './components/toggleDarkMode.js';
 import {
@@ -29,6 +30,7 @@ async function initApp() {
   initDarkMode();
   initBarraPesquisa();
   initToggleUnidade();
+  initLocalizacao();
   document.addEventListener('buscaHistorico', (event) => {
     const cidadeEscolhida = event.detail.cidadeClicada;
     realizarBuscaCompleta(cidadeEscolhida);
@@ -39,6 +41,10 @@ async function initApp() {
       renderizarClimaAtual(dadosAtuais, isCelsius);
       renderizarPrevisao(dadosAtuais.forecast.forecastday, isCelsius);
     }
+  });
+  document.addEventListener('buscaLocalizacao', (event) => {
+    const localizacao = event.detail.query;
+    realizarBuscaCompleta(localizacao);
   });
   renderizarCidadesRecentes();
   const ultimaCidade = getCidades()[0];
