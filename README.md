@@ -1,181 +1,98 @@
-<div align="center">
-
 # ⛅ Atmos360
 
-**App de previsão do tempo com dados em tempo real, interface glassmorphism e tema escuro.**
+O **Atmos360** é uma aplicação web para consulta da previsão do tempo em tempo real, desenvolvida com foco em desempenho, usabilidade e design moderno. A plataforma permite pesquisar cidades, utilizar a geolocalização do navegador e visualizar informações meteorológicas atualizadas por meio de uma interface responsiva e intuitiva.
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+Este projeto foi desenvolvido como parte dos meus estudos em desenvolvimento frontend, aplicando conceitos como consumo de APIs REST, organização modular com JavaScript ES Modules, persistência de dados no navegador e criação de interfaces modernas.
 
-### 🌍 [Acesse o Projeto Online Aqui](https://atmos360weather.vercel.app/)
-
-[Funcionalidades](#-funcionalidades) · [Screenshots](#-screenshots) · [Como Usar](#-como-usar) · [Arquitetura](#-arquitetura) · [Aprendizados](#-aprendizados)
-
-</div>
-
----
-
-## 📸 Screenshots
-
-<div align="center">
-
-| Light Mode | Dark Mode |
-|---|---|
-| ![Light Mode](docs/screenshots/light-mode.png) | ![Dark Mode](docs/screenshots/dark-mode.png) |
-
-</div>
+🌐 **Acesse o projeto:**  
+https://atmos360weather.vercel.app/
 
 ---
 
 ## ✨ Funcionalidades
 
-- 🔍 **Busca por cidade** — Pesquise qualquer cidade do mundo com sanitização de input.
-- 📍 **Geolocalização** — Use sua localização atual com um clique.
-- 🌡️ **Clima em tempo real** — Temperatura, umidade, vento, sensação térmica, pressão, UV e visibilidade.
-- 📅 **Previsão de 3 dias** — Cards com temperatura máxima/mínima e ícones dinâmicos.
-- 🌙 **Dark Mode** — Alternância suave com persistência no localStorage.
-- 🔄 **Celsius / Fahrenheit** — Troca instantânea de unidade sem nova chamada à API (Gerenciamento de Estado).
-- 🕘 **Buscas recentes** — Histórico das últimas 5 cidades (tags clicáveis persistidas no navegador).
-- 💎 **Glassmorphism** — Interface com efeito vidro, blur e transparências.
-- 📱 **Responsivo** — Layout adaptativo de mobile a desktop.
-- ⚡ **Animações** — Entrada em fade, ícone flutuante e micro-interações em hover.
+- 🔍 Busca por cidades
+- 📍 Geolocalização do navegador
+- 🌡️ Informações meteorológicas em tempo real
+- 📅 Previsão para os próximos dias
+- 🌙 Alternância entre tema claro e escuro
+- 🌡️ Conversão entre Celsius e Fahrenheit
+- 🕘 Histórico de pesquisas com localStorage
+- 📱 Interface responsiva
 
 ---
 
-## 🚀 Como Usar
+## 🛠️ Tecnologias utilizadas
 
-### Pré-requisitos
+- JavaScript (ES Modules)
+- Vite
+- CSS
+- WeatherAPI
+- LocalStorage
+- Geolocation API
 
-- [Node.js](https://nodejs.org/) (v18+)
-- Uma chave gratuita da [WeatherAPI](https://www.weatherapi.com/)
+---
 
-### Instalação
+## 🚀 Como executar o projeto
+
+### 1. Clone o repositório
 
 ```bash
-# Clone o repositório
-git clone https://github.com/seu-usuario/atmos360-weather.git
+git clone https://github.com/vitorfelipedev/atmos360.git
+```
 
-# Acesse a pasta
-cd atmos360-weather
+> **Obs.:** Caso o nome do repositório seja diferente, substitua pela URL correta.
 
-# Instale as dependências
+### 2. Acesse a pasta do projeto
+
+```bash
+cd atmos360
+```
+
+### 3. Instale as dependências
+
+```bash
 npm install
 ```
 
-### Configuração
+### 4. Configure a chave da API
 
-Crie um arquivo `.env` na raiz:
+Crie um arquivo `.env` na raiz do projeto:
 
 ```env
 VITE_API_KEY=sua_chave_aqui
 ```
 
-### Executando
+### 5. Execute o projeto
 
 ```bash
 npm run dev
 ```
 
-Acesse `http://localhost:5173` no navegador.
+A aplicação estará disponível no endereço informado pelo Vite (geralmente `http://localhost:5173`).
 
 ---
 
-## 🏗️ Arquitetura
+## 📜 Scripts disponíveis
 
-```
-src/
-├── main.js                 → Orquestra inicialização e eventos
-├── components/             → Interação do usuário
-│   ├── barraPesquisa.js    → Formulário de busca
-│   ├── localizacao.js      → Geolocalização via browser API
-│   ├── recentes.js         → Histórico de buscas (localStorage)
-│   ├── toggleDarkMode.js   → Tema claro/escuro
-│   └── toggleUnidade.js    → °C ↔ °F
-├── services/               → Camada de dados
-│   ├── api.js              → Fetch para WeatherAPI
-│   └── storage.js          → Leitura/escrita no localStorage
-├── utils/                  → Renderização
-│   ├── climaAtual.js       → Card do clima atual (14 elementos DOM)
-│   └── previsao.js         → Cards de previsão (DocumentFragment)
-└── styles/                 → CSS modular com design tokens
-    ├── variables.css        → Custom properties (light + dark)
-    ├── global.css           → Reset, layout, animações, breakpoints
-    ├── header.css           → Search box e botões
-    ├── clima-atual.css      → Card principal
-    ├── painel-lateral.css   → Sidebar (previsão + histórico)
-    └── footer.css           → Rodapé
-```
-
-### Comunicação entre Módulos
-
-Os componentes são desacoplados via **CustomEvents**:
-
-```
-recentes.js      ──► buscaHistorico   ──► main.js
-toggleUnidade.js ──► mudouUnidade     ──► main.js
-localizacao.js   ──► buscaLocalizacao ──► main.js
-```
-
-Isso permite que cada componente funcione de forma independente — o `main.js` atua como mediador central.
+| Comando | Descrição |
+| -------- | --------- |
+| `npm run dev` | Inicia o servidor de desenvolvimento |
+| `npm run build` | Gera a versão de produção |
+| `npm run preview` | Executa a build localmente |
 
 ---
 
-## 🎨 Design
+## 👨‍💻 Autor
 
-### Glassmorphism
+**Vitor Felipe**
 
-A interface usa efeito vidro (glass) com:
-- Backgrounds semi-transparentes (`rgba`)
-- `backdrop-filter: blur(20px)`
-- Bordas suaves com transparência
-- Sombras em múltiplas camadas
-
-### Design Tokens
-
-Todas as cores, espaçamentos e transições são centralizados em CSS custom properties. O dark mode funciona apenas sobrescrevendo essas variáveis — zero duplicação de código.
-
-### Responsividade
-
-| Breakpoint | Layout |
-|---|---|
-| Mobile (`< 480px`) | Coluna única, grid 2x3 nos detalhes |
-| Tablet (`≥ 768px`) | Container expandido |
-| Desktop (`≥ 1024px`) | 2 colunas: clima + sidebar |
+- 💼 Desenvolvedor Frontend
+- GitHub: https://github.com/vitorfelipedev
+- LinkedIn: https://www.linkedin.com/in/vitor-felipe-733892245/
 
 ---
 
-## 📚 Aprendizados
+## 🌦️ API utilizada
 
-Este projeto foi desenvolvido para praticar e consolidar:
-
-- **Consumo de API REST** com `fetch` e tratamento de erros
-- **ES Modules** — Organização com `import/export` sem frameworks
-- **CustomEvents** — Comunicação desacoplada entre componentes
-- **CSS Custom Properties** — Sistema de design tokens para temas
-- **Glassmorphism** — Técnica visual moderna com `backdrop-filter`
-- **localStorage** — Persistência de preferências e histórico
-- **Geolocation API** — Acesso à localização do navegador
-- **Intl API** — Formatação de datas e tempo relativo em pt-BR
-- **Vite** — Setup de build moderno para projetos vanilla
-
----
-
-## 🛠️ Feito com
-
-- [Vite](https://vitejs.dev/) — Build tool
-- [WeatherAPI](https://www.weatherapi.com/) — Dados meteorológicos
-- [Google Fonts (Inter)](https://fonts.google.com/specimen/Inter) — Tipografia
-- [Feather Icons](https://feathericons.com/) — Ícones SVG inline
-
----
-
-<div align="center">
-
-Feito por **Vitor Felipe** 🚀
-
-</div>
-
-# Instale as dependências
-npm install
+Este projeto utiliza a **WeatherAPI** para obtenção de dados meteorológicos em tempo real e previsão do tempo.
